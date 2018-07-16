@@ -20,7 +20,7 @@ gem 'devise', '~> 4.4', '>= 4.4.3'
 #Intelligent search made easy searchKick
 gem 'searchkick', '~> 3.1'
 #postgres gem
-gem 'postgres', '~> 0.8.1'
+gem 'pg'
 #Jquery and bootstrap
 gem 'jquery_pwstrength_bootstrap_4', '~> 1.2', '>= 1.2.2'
 # Use CoffeeScript for .coffee assets and views
