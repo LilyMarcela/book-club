@@ -1,0 +1,17 @@
+<%= form_for @book do |f|%>
+
+  <div class="row">
+    <div class="col-3">
+      title:<%= f.text_field(:title) %>
+    </div>
+    <div class="col-3">
+      author:<%= f.text_field(:author) %>
+    </div>
+    <div class="col-3">
+      url_file:<%= f.text_field(:url_file) %>
+    </div>
+    <%= f. submit "Submit", class: "btn btn-primary"%>
+  </div>
+
+
+<%end%>

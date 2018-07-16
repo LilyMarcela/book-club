@@ -1,16 +1,49 @@
 class BooksController < ApplicationController
 
-	def search
-		if params[:search]
-			@books = Book.search(params[:search], operator: "or")
-		else
-			@books = Book.all
-		end
-	end
+  def index
+    @books = Book.all
+  end
 
+  def show
+    @book = Book.find(params[:id])
+  end
 
-	private
-	def book_params
-			params.require(:book).permit(:isbn, :title, :author, :publication_date, :cover_url, :summary, :status, :library_id)
-	end
+  def new
+    @book = Book.new
+  end
+
+  def create
+    @book = Book.create(book_params)
+    redirect_to "/books/#{@book.id}"
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    redirect_to "/books"
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to "/books"
+
+  end
+
+  private
+  def book_params
+    params.require(:book).permit(:title, :author, :url_file, :publication_date, :synopsis)
+  end
+
+  def search
+    if params[:search]
+      @books = Book.search(params[:search], operator: "or")
+    else
+      @books = Book.all
+    end
+  end
 end
