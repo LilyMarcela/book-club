@@ -1,0 +1,73 @@
+/*--form--*/
+
+body {
+    text-transform: uppercase;
+}
+
+.main-agileits {
+    margin: 0 auto;
+    width: 40%;
+}
+
+.form-w3-agile h2,{
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 2em;
+    letter-spacing: 2px;
+}
+
+.form-w3-agile {
+    background: rgba(4, 4, 4, 0.56);
+    padding: 60px 40px;
+    margin-top:15%;
+}
+
+input[type="text"],input[type="password"], input[type="email"]{
+    outline: none;
+    color: #ffffff;
+    padding: 15px 40px 15px 10px;
+    border: none;
+    border-bottom: 1px solid #DCCBCF;
+    margin-bottom: 30px;
+    background: transparent;
+    width: 90%;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    padding: 9px 38px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+input[type="submit"]:hover{
+    background: #df5799;
+    color:#ffffff;
+    transition: 0.3s all;
+}
+
+.p-bottom-w3ls {
+    font-size: 13px;
+    color: #eee;
+    text-align: center;
+    text-transform: none;
+}
+
+.p-bottom-w3ls a{
+    color: #df5799;
+}
+
+/*--responsive-design--*/
+
+@media(max-width:420px){
+
+    .main-agileits {
+    margin: 0 auto;
+    width: 80%;
+    }
+}

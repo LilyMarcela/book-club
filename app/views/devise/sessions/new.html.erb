@@ -1,0 +1,14 @@
+<%= form_for(:user, :url => session_path(:user)) do |f| %>
+<div class="main-agileits">
+  <div class="form-w3-agile">
+     <h2>Welcome Back</h2>
+     <form action="#" method="post">
+        <input type="text" name="user[email]" placeholder="Customer number or username " required="">
+        <input type="password" name="user[password]" placeholder="Password" required="">
+        <p class="p-bottom-w3ls">Are you new?<a class="w3_play_icon1" href="/users/sign_up">  Register here</a></p>
+        <p class="p-bottom-w3ls">Forget your password<a class="" href="/users/password/new">  Retrieve here </a></p>  
+        <input type="submit" value="Login">
+     </form>
+  </div>
+</div>
+<% end %>

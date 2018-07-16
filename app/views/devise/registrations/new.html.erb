@@ -1,0 +1,16 @@
+<%= form_for(:user, :url => registration_path(:user)) do |f| %>
+  <%= devise_error_messages! %>
+      <div class="main-agileits">
+         <div class="form-w3-agile">
+            <h2>Register Form</h2>
+               <form action="#" method="post">
+                     <input input autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email" placeholder="Email" class="mail" required="">
+                     <input autocomplete="off" type="password" name="user[password]" id="user_password" placeholder="Password" required="">
+                     <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" placeholder="Confirm Password" required="">
+               </form>
+               <div class="actions">
+                  <input type="submit" name="commit" value="Sign up" data-disable-with="Sign up">
+               </div>  
+         </div>              
+      </div>   
+<% end %>
