@@ -1,0 +1,104 @@
+body
+{
+   background: url(https://s3-us-west-1.amazonaws.com/capetownpicture/21779BDD-731B-4751-BC49-1D0777DAABDE.jpg) no-repeat center center fixed;
+   background-size: cover;
+}
+
+.title
+{
+   font-family: 'Dosis', sans-serif;
+   color:white;
+}
+
+@media only screen and (max-width: 420px) 
+{
+
+   .desc
+   {
+      font-size: 1.2rem;
+   }
+
+   .title
+   {
+      font-size: 3rem;
+   }
+}
+
+.desc
+{
+   color:white;
+}
+
+button
+{
+  cursor:pointer;
+}
+
+.home{
+   margin-top: 10%;
+   padding: 4rem 2rem;
+   background-color: transparent;
+}
+
+/* style for button */
+
+.typ-subhed {
+   font-family: 'Dosis', sans-serif;
+  line-height: 30px;
+  letter-spacing: 0;
+}
+
+.ctrl-standard.fx-sliderIn {
+  color: white;
+  border-color: white;
+}
+.ctrl-standard.fx-sliderIn::after {
+  background: white;
+}
+
+[class*="ctrl-"] {
+  padding: 5Px 15px;
+  border-radius: 5px;
+  border: 2px solid #231f20;
+}
+[class*="ctrl-"][class*="fx-"]:hover,
+[class*="ctrl-"][class*="fx-"].active {
+  color: #231f20;
+}
+
+  [class*="fx-"],
+[class*="fx-"]:hover {
+    transition: color 0.5s  ease-in-out;
+  }
+  [class*="fx-"]:not(.fx-dyna) {
+    position: relative;
+    z-index: 1;
+    transition-delay: 0.2s !important;
+    overflow: hidden;
+    background-color: transparent;
+  }
+  [class*="fx-"]:not(.fx-dyna)::after,
+[class*="fx-"]:not(.fx-dyna)::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .fx-sliderIn::after {
+    transition: width 0.5s ease-in-out;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+  }
+  .fx-sliderIn:hover::after,
+.fx-sliderIn.active::after {
+    transition: width 0.5s ease-in-out;
+    width: 100%;
+  }
+  :checked + .fx-sliderIn::after,
+.fx-sliderIn.active::after {
+    width: 300%;
+  }
