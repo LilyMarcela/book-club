@@ -17,7 +17,7 @@
     <td><%= book.author %></td>
     <td><%= book.url_file %></td>
     <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', books_edit_path(book) %></td>
+    <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
                                      :method => :delete %></td>
   </tr>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New book', books_path %>
+<%= link_to 'New book', new_book_path %>
