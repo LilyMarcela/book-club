@@ -36,7 +36,12 @@ class BooksController < ApplicationController
 
     def search
     if params[:search]
-      @books = Book.search(params[:search], operator: "or")
+      #the commented line search is a sql query, optional when elastic search has not being installed yet  
+      #@books = Book.where("title LIKE ? OR author LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+
+      # searchkick parameters, it needs to have the gem installed
+      # Additionally, it relies on elastic search which uses java  
+      @books = Book.search(params[:search])
     else
       @books = Book.all
     end
