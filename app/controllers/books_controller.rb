@@ -20,7 +20,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create!(book_params)
+    @book = Book.create(book_params)
     redirect_to "/books/#{@book.id}"
   end
 
@@ -57,6 +57,9 @@ class BooksController < ApplicationController
   def admin_check
     redirect_to "/" unless @admin
       
+  end
+  def test
+
   end
 
 
