@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_action :set_admin
+  before_action :admin_check, only: [:destroy]
+  before_action :authenticate_user!, except: [:index, :destroy ]
 
   def index
     @books = Book.all
@@ -12,13 +15,13 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+  def edit
+    @book = Book.find(params[:id])
+  end
+
   def create
     @book = Book.create(book_params)
     redirect_to "/books/#{@book.id}"
-  end
-
-  def edit
-    @book = Book.find(params[:id])
   end
 
   def update
@@ -33,6 +36,14 @@ class BooksController < ApplicationController
     redirect_to "/books"
   end
 
+    def search
+    if params[:search]
+      @books = Book.search(params[:search], operator: "or")
+    else
+      @books = Book.all
+    end
+  end
+
   private
   def book_params
     params.require(:book).permit(:title, :author, :url_file)
@@ -43,4 +54,19 @@ class BooksController < ApplicationController
     bucket = s3.bucket(name)
     @books = bucket.objects
   end
+
+  def set_admin
+    @admin = user_signed_in? && current_user.admin    
+  end
+
+  def admin_check
+    redirect_to "/" unless @admin
+      
+  end
+  def test
+
+  end
+
+
+
 end

@@ -1,16 +1,24 @@
-body
-{
-   background: url(https://s3-us-west-1.amazonaws.com/capetownpicture/21779BDD-731B-4751-BC49-1D0777DAABDE.jpg) no-repeat center center fixed;
+
+.homepage{
+  background: url(https://s3-us-west-1.amazonaws.com/capetownpicture/21779BDD-731B-4751-BC49-1D0777DAABDE.jpg) no-repeat center center fixed;
+  background-position: center;
+   background-repeat: no-repeat;
    background-size: cover;
+  height: 100%;
+
 }
+body, html {
+    height: 100%;
+}
+
 
 .title
 {
    font-family: 'Dosis', sans-serif;
-   color:white;
+
 }
 
-@media only screen and (max-width: 420px) 
+@media only screen and (max-width: 420px)
 {
 
    .desc
@@ -26,7 +34,7 @@ body
 
 .desc
 {
-   color:white;
+
 }
 
 button
@@ -35,7 +43,7 @@ button
 }
 
 .home{
-   margin-top: 5%;
+   //margin-top: 5%;
    background-color: transparent;
 }
 
@@ -100,4 +108,22 @@ button
   :checked + .fx-sliderIn::after,
 .fx-sliderIn.active::after {
     width: 300%;
+  }
+
+  .show{
+    max-width: 1100px;
+    padding-right: 10%;
+    padding-left: 10%;
+
+  }
+
+  input[type="text"], input[type="password"], input[type="email"] {
+      outline: none;
+       color: black;
+      padding: 15px 40px 15px 10px;
+      border: none;
+      border-bottom: 1px solid #DCCBCF;
+      margin-bottom: 30px;
+      background: transparent;
+      width: 90%;
   }
