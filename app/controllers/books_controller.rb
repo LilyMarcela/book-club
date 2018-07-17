@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_action :set_admin
+  before_action :admin_check, only: [:destroy]
+  before_action :authenticate_user!, except: [:index, :destroy ]
 
   def index
     @books = Book.all
@@ -45,6 +48,15 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:title, :author, :url_file)
+  end
+
+  def set_admin
+    @admin = user_signed_in? && current_user.admin    
+  end
+
+  def admin_check
+    redirect_to "/" unless @admin
+      
   end
 
 
