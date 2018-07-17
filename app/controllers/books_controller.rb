@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create(book_params)
+    @book = Book.create!(book_params)
     redirect_to "/books/#{@book.id}"
   end
 
@@ -34,8 +34,18 @@ class BooksController < ApplicationController
 
   end
 
+    def search
+    if params[:search]
+      @books = Book.search(params[:search], operator: "or")
+    else
+      @books = Book.all
+    end
+  end
+
   private
   def book_params
     params.require(:book).permit(:title, :author, :url_file)
   end
+
+
 end
