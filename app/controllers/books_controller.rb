@@ -34,7 +34,6 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to "/books"
-
   end
 
     def search
@@ -50,6 +49,12 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :author, :url_file)
   end
 
+  def get_pdf_array_from_bucket(name)
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(name)
+    @books = bucket.objects
+  end
+
   def set_admin
     @admin = user_signed_in? && current_user.admin    
   end
@@ -61,6 +66,7 @@ class BooksController < ApplicationController
   def test
 
   end
+
 
 
 end
