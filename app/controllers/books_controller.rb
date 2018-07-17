@@ -58,6 +58,9 @@ class BooksController < ApplicationController
     redirect_to "/" unless @admin
       
   end
+  def test
+
+  end
 
 
 end
