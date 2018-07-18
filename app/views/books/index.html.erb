@@ -4,7 +4,7 @@
     <td><a href="/books/<%= book.id %>"><%= book.title %></a></td>
     <td><%= book.author %></td>
 
-    <% if current_user.admin || current_user == book.owner_id %>
+    <% if current_user.admin || current_user.id == book.owner_id %>
 
       <td><%= link_to 'Edit', edit_book_path(book) %></td>
       <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
