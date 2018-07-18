@@ -13,6 +13,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @background_pic = "sunsetpic"
   end
 
   def edit
@@ -20,7 +21,9 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create(book_params)
+    @book = Book.new(book_params)
+    @book.owner_id = current_user.id
+    @book.save
     redirect_to "/books/#{@book.id}"
   end
 
@@ -68,10 +71,4 @@ class BooksController < ApplicationController
     redirect_to "/" unless @admin
 
   end
-  def test
-
-  end
-
-
-
 end

@@ -1,16 +1,12 @@
-<%= form_for @book do |f|%>
-
-  <div class="row">
-    <div class="col-3">
-      title:<%= f.text_field(:title) %>
-    </div>
-    <div class="col-3">
-      author:<%= f.text_field(:author) %>
-    </div>
-    <div class="col-3">
-      url_file:<%= f.text_field(:url_file) %>
-    </div>
-    <%= f. submit "Submit", class: "btn btn-primary"%>
-  </div>
-
-<%end%>
+<div class="main-agileits">
+   <div class="form-w3-agile">
+      <h2>Share Your Book</h2>
+      <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="yJWP47BlUZe8IbScckiii41HqJuBKom8ngtBX8dJs//fUd3xPBk0r7eZfgC7AWLP6XBUnt/Z15VVKU+E+Q5+2g==">
+            <input placeholder="Title" type="text" name="book[title]" id="book_title">
+            <input placeholder="Author" type="text" name="book[author]" id="book_author">
+            <input type="file" placeholder="File" type="text" name="book[url_file]" id="book_url_file" accept="file_extension">
+            <input type="submit" name="commit" value="Submit" class="btn btn-primary" data-disable-with="Submit">
+        </div>
+      </form>
+   </div>   
+</div>

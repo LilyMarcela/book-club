@@ -1,49 +1,22 @@
-
-
 <div class="container show">
-
   <div class="row info">
-
-    <div class="col-10">
-      <h4>
-        <b>Title:</b>
-        <%= @book.title %>
-        <h6 id ="subtitle"></h6>
-      </h4>
-      <h4>
-        <b>Author:</b>
-        <%= @book.author %>
-      </h4>
-        <div class="description">
-            <b>Description:</b>
-            <p id="description"> </p>
-        </div>
-
-        <div class="category">
-            <b>Categories:</b>
-            <p id="category"> </p>
-        </div>
+    <div class="col-8">
+      <h4><%= @book.title %></h4>
+      <h4><%= @book.author %></h4>
+      <div class="description">
+        <b>Description:</b>
+        <p id="description"> </p>
+      </div>
+      <div class="category">
+          <b>Categories:</b>
+          <p id="category"> </p>
+      </div>
     </div>
-    <div class="col-2">
+    <div class="col-4">
       <img id="book_img" src="" alt="book">
-
-    </div>
-
-
+   </div>
   </div>
-
-
-
-
-  <p>
-    <b>Url_file:</b>
-
-
-    <%= @book.url_file %>
-  </p>
-
-
-  <%= link_to 'Edit', edit_book_path(@book) %> |
+  <%= link_to 'Download', books_path %>
   <%= link_to 'Back', books_path %>
 </div>
 
@@ -70,13 +43,10 @@ $.ajax({
   var book={ img: "" , description:"",subtitle: "" ,category:"", publishdate:"", publisher:""};
 
 var i = 0
-
           book.img=json.items[i].volumeInfo.imageLinks.smallThumbnail;
           book.subtitle=json.items[i].volumeInfo.subtitle;
           book.description=json.items[i].volumeInfo.description;
           book.category=json.items[i].volumeInfo.categories;
-
-
           console.log(book);
 
 $("#book_img").attr("src",book.img);
@@ -84,10 +54,7 @@ $("#description").append(book.description);
 
 $("#category").append(book.category);
 $("#subtitle").append(book.subtitle);
-
 }
-
 });
-
 </script>
 
