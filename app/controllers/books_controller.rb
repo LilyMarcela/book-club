@@ -81,7 +81,7 @@ class BooksController < ApplicationController
 
   def upload
     s3 = Aws::S3::Resource.new
-    bucket = s3.bucket("capetownpicture")
+    bucket = s3.bucket("bookwormfiles")
     file = params[:book][:url_file]
     key = current_user.id.to_s + file.original_filename
     obj = bucket.object(key)
