@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_admin
-  before_action :find_book, only: [:show, :edit, :update]
-  before_action :destroy_check, only: [:destroy]
+  before_action :find_book, only: [:show, :update]
+  before_action :destroy_check, only: [:destroy, :edit]
   before_action :authenticate_user!, except: [:index, :show ]
 
   def index
@@ -22,6 +22,7 @@ class BooksController < ApplicationController
   end
 
   def create
+
     upload
     @book = Book.new(book_params)
     @book.owner_id = current_user.id
@@ -72,7 +73,8 @@ class BooksController < ApplicationController
   end
 
   def destroy_check
-    unless @admin || current_user == @book.owner_id
+    @book = Book.find(params[:id])
+    unless @admin || current_user.id == @book.owner_id
       redirect_to "/" 
     end
   end
