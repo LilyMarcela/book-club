@@ -33,25 +33,18 @@ String.prototype.allReplace = function(obj) {
 
 $.ajax({
   url:'https://www.googleapis.com/books/v1/volumes?q=intitle:'+"<%= @book.title %>".allReplace({" " : "+"})
-  +"+inauthor:"+"<%= @book.author %>".allReplace({" " : "+"})+"&key=AIzaSyAKZyMGNq-sfmyeq4UMob7hndanxiY-NHU"
-,
+  +"+inauthor:"+"<%= @book.author %>".allReplace({" " : "+"})+"&key=AIzaSyAKZyMGNq-sfmyeq4UMob7hndanxiY-NHU&maxResults=1",
+
   success: function(json){
-    console.log(json);
-    console.log('https://www.googleapis.com/books/v1/volumes?q=intitle:'+"<%= @book.title %>".allReplace({" " : "+"})
-  +"+inauthor<%=@book.author%>".allReplace({" " : "+"})+"&key=AIzaSyAKZyMGNq-sfmyeq4UMob7hndanxiY-NHU");
-
   var book={ img: "" , description:"",subtitle: "" ,category:"", publishdate:"", publisher:""};
-
-var i = 0
-          book.img=json.items[i].volumeInfo.imageLinks.smallThumbnail;
-          book.subtitle=json.items[i].volumeInfo.subtitle;
-          book.description=json.items[i].volumeInfo.description;
-          book.category=json.items[i].volumeInfo.categories;
-          console.log(book);
-
+  var i = 0
+  book.img=json.items[i].volumeInfo.imageLinks.smallThumbnail;
+  book.subtitle=json.items[i].volumeInfo.subtitle;
+  book.description=json.items[i].volumeInfo.description;
+  book.category=json.items[i].volumeInfo.categories;
+        
 $("#book_img").attr("src",book.img);
 $("#description").append(book.description);
-
 $("#category").append(book.category);
 $("#subtitle").append(book.subtitle);
 }
