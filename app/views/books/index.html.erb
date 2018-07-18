@@ -1,22 +1,36 @@
-<h1>Listing Books</h1>
+<div class="row">
+	<div class="col-12 col-md-8 col-lg-6">		
+		<h3>Listing Books</h3>
+	</div>
+	<div class="col-12 col-md-4 col-lg-6">
+	</div>	
+</div>
 <table>
 <% @books.each do |book| %>
   <tr>
     <td><%= book.title %></td>
     <td><%= book.author %></td>
-    <td><%= book.url_file %></td>
-    <td><%= link_to 'Show', book %></td>
-
-    <% if current_user.admin || current_user == book.owner_id %>
-      <td><%= link_to 'Edit', edit_book_path(book) %></td>
-      <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
+    <td class="btn-success"> <form action="<%= book.url_file %>">
+	    	<input type="submit" value="GET" />
+			</form>
+		</td>
+		<tr>
+    	
+    	<% if current_user.admin || current_user == book.owner_id %>
+      	<td><%= link_to 'Edit', edit_book_path(book) %></td>
+      	<td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
                                   :method => :delete %></td>
+      <% else %>
+      	<td class="btn-link"><%= link_to 'New book', new_book_path %></td>
+      	<td><%= link_to 'Show', book %></td>
+  		</tr>
     <% end %>  
 
   </tr>
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'New book', new_book_path %>
+
+
+
