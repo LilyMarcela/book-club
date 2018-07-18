@@ -20,7 +20,6 @@ body {
 .form-w3-agile {
     background: rgba(4, 4, 4, 0.56);
     padding: 60px 40px;
-    margin-top:15%;
 }
 
 input[type="text"],input[type="password"], input[type="email"]{
@@ -34,7 +33,7 @@ input[type="text"],input[type="password"], input[type="email"]{
     width: 90%;
 }
 
-input[type="submit"] {
+input[type="submit"]{
     display: block;
     margin: 0 auto;
     border: none;
@@ -43,6 +42,7 @@ input[type="submit"] {
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
+    margin-top:10%;
 }
 
 input[type="submit"]:hover{
