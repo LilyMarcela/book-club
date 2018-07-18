@@ -16,3 +16,9 @@
 </table>
 
 <%= link_to 'New book', new_book_path %>
+
+
+<div class="apple_pagination">
+  <p>Now let's render us some pagination!</p>
+  <%= will_paginate @book %>
+</div>
