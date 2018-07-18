@@ -1,14 +1,14 @@
 class BooksController < ApplicationController
   before_action :set_admin
-  before_action :admin_check, only: [:destroy]
-  before_action :authenticate_user!, except: [:index, :destroy ]
+  before_action :find_book, only: [:show, :edit, :update]
+  before_action :destroy_check, only: [:destroy]
+  before_action :authenticate_user!, except: [:index, :show ]
 
   def index
     @books = Book.all
   end
 
   def show
-    @book = Book.find(params[:id])
   end
 
   def new
@@ -17,7 +17,6 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def create
@@ -28,13 +27,11 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to "/books"
   end
 
   def destroy
-    @book = Book.find(params[:id])
     @book.destroy
     redirect_to "/books"
   end
@@ -53,6 +50,10 @@ class BooksController < ApplicationController
   end
 
   private
+  def find_book
+    @book = Book.find(params[:id])
+  end
+
   def book_params
     params.require(:book).permit(:title, :author, :url_file, :owner_id)
   end
@@ -67,8 +68,8 @@ class BooksController < ApplicationController
     @admin = user_signed_in? && current_user.admin
   end
 
-  def admin_check
-    redirect_to "/" unless @admin
-
+  def destroy_check
+    unless @admin || current_user == @book.owner_id
+      redirect_to "/" 
+    end
   end
-end

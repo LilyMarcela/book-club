@@ -7,10 +7,12 @@
     <td><%= book.url_file %></td>
     <td><%= link_to 'Show', book %></td>
 
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    <% if current_user.admin || current_user == book.owner_id %>
+      <td><%= link_to 'Edit', edit_book_path(book) %></td>
+      <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
+                                  :method => :delete %></td>
+    <% end %>  
 
-    <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
-                                     :method => :delete %></td>
   </tr>
 <% end %>
 </table>
