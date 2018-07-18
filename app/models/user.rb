@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :books_borrowed, through: :share_books, class_name: "Book"
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  scope :admin, -> { where(admin: true) }
 end
