@@ -72,7 +72,7 @@ class BooksController < ApplicationController
 
   def destroy_check
     unless @admin || current_user == @book.owner_id
-      redirect_to "/" 
+      redirect_to "/"
     end
 
   end
