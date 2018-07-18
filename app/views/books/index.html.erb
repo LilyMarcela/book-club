@@ -10,6 +10,7 @@
   <tr>
     <td><%= book.title %></td>
     <td><%= book.author %></td>
+
     <td class="btn-success"> <form action="<%= book.url_file %>">
 	    	<input type="submit" value="GET" />
 			</form>
@@ -19,6 +20,7 @@
     	<% if current_user.admin || current_user == book.owner_id %>
       	<td><%= link_to 'Edit', edit_book_path(book) %></td>
       	<td><%= link_to 'Destroy', book, :confirm => 'Are you sure?',
+
                                   :method => :delete %></td>
       <% else %>
       	<td class="btn-link"><%= link_to 'New book', new_book_path %></td>
