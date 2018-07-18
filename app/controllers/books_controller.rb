@@ -31,12 +31,16 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     redirect_to "/books"
-
   end
 
     def search
     if params[:search]
-      @books = Book.search(params[:search], operator: "or")
+      #the commented line search is a sql query, optional when elastic search has not being installed yet
+      #@books = Book.where("title LIKE ? OR author LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+
+      # searchkick parameters, it needs to have the gem installed
+      # Additionally, it relies on elastic search which uses java
+      @books = Book.search(params[:search])
     else
       @books = Book.all
     end
@@ -48,18 +52,27 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :url_file)
+    params.require(:book).permit(:title, :author, :url_file, :owner_id)
+  end
+
+  def get_pdf_array_from_bucket(name)
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(name)
+    @books = bucket.objects
   end
 
   def set_admin
-    @admin = user_signed_in? && current_user.admin    
+    @admin = user_signed_in? && current_user.admin
   end
+
 
   def destroy_check
     unless @admin || current_user == @book.owner_id
       redirect_to "/" 
     end
+
   end
+
 
 
 end
