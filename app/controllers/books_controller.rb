@@ -71,6 +71,7 @@ class BooksController < ApplicationController
 
 
   def destroy_check
+    @book = Book.find(params[:id])
     unless @admin || current_user.id == @book.owner_id
       redirect_to "/" 
     end
