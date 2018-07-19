@@ -49,7 +49,7 @@ class BooksController < ApplicationController
 
       # searchkick parameters, it needs to have the gem installed
       # Additionally, it relies on elastic search which uses java
-      @books = Book.search(params[:search])
+      @books = Book.search(params[:search], misspellings: {edit_distance: 3} )
     else
       @books = Book.all
     end

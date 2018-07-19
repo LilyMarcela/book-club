@@ -7,10 +7,10 @@ one:
 
 two:
   title: "The grapes of wrath"
-  author: "JOHN STEINBECK"
+  author: "John Steinbeck"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 three:
-  title: "Pet Sammatary"
+  title: "Pet Samatary"
   author: "STEPHEN KING"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 
@@ -23,7 +23,7 @@ five:
   author: "GABRIEL GARCIA MARQUEZ"
   url_file: "http://www.static.zhan.com/uploadfile/2015/04/1075026_2015042115265723k5H.pdf"
 six:
-  title: "LA HISTORIA DE MIS PUTAS TRISTES"
+  title: "MEMORIA DE MIS PUTAS TRISTES"
   author: "GABRIEL GARCIA MARQUEZ"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 seven:
@@ -31,7 +31,7 @@ seven:
   author: "GABRIEL GARCIA MARQUEZ"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 eight:
-  title: "EL GENERALEN SU LABERINTO"
+  title: "EL GENERAL EN SU LABERINTO"
   author: "GABRIEL GARCIA MARQUEZ"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 nine:
@@ -55,7 +55,7 @@ thirteen:
   author: "GERMAN CASTRO CAYCEDO"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 fourtheen:
-  title: "MI ALMA SE LA DEJO ALDIABLO "
+  title: "MI ALMA SE LA DEJO AL DIABLO "
   author: "GERMAN CASTRO CAYCEDO"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 fiftheen:
@@ -63,19 +63,19 @@ fiftheen:
   author: "GERMAN CASTRO CAYCEDO"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 sixtheen:
-  title: "TLA VORAGINE"
+  title: "LA VORAGINE"
   author: "JOSE EUSTACIO RIVERA"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 seventheen:
-  title: "MARIA"
+  title: "LA MARIA"
   author: "JORGE ISAACS"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 eightheen:
-  title: "QON QUIJOTE DE LA MANCHA"
+  title: "DON QUIJOTE DE LA MANCHA"
   author: "MIGUEL DE CERVANTES SAVEDRA"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 ninetheen:
-  title: "HARRY POTTER"
+  title: "HARRY POTTER Y LA PIEDRA FILOSOFAL"
   author: "J.K ROWLING"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 twenty:
@@ -83,6 +83,6 @@ twenty:
   author: "ISABEL ALLENDE"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
 twentyOne:
-  title: "ROMEO AND JULIET"
+  title: "ROMEO Y JULIETA"
   author: " William Shakespeare"
   url_file: "http://nisbah.com/summer_reading/grapes_of_wrath_john_steinbeck2.pdf"
