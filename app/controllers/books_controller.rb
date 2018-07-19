@@ -9,8 +9,6 @@ class BooksController < ApplicationController
     @books = Book.paginate(:page => params[:page], :per_page => 5)
   end
 
-
-
   def show
     @book = Book.find(params[:id])
   end
@@ -25,12 +23,14 @@ class BooksController < ApplicationController
   end
 
   def create
-
-    upload
     @book = Book.new(book_params)
     @book.owner_id = current_user.id
-    @book.save
+    @book.bookpdf = params[:book][:url_file]
+    @book.save!
     redirect_to "/books/#{@book.id}"
+    key = @book.title+@book.owner_id.to_s
+    path = @book.bookpdf.current_path
+    HardWorker.perform_async(key, path, @book.id)
   end
 
   def update
@@ -46,11 +46,11 @@ class BooksController < ApplicationController
   def search
     if params[:search]
       #the commented line search is a sql query, optional when elastic search has not being installed yet
-      @books = Book.where("title LIKE ? OR author LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+      #@books = Book.where("title LIKE ? OR author LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
 
       # searchkick parameters, it needs to have the gem installed
       # Additionally, it relies on elastic search which uses java
-      # @books = Book.search(params[:search])
+      @books = Book.search(params[:search])
     else
       @books = Book.all
     end
@@ -80,15 +80,6 @@ class BooksController < ApplicationController
     unless @admin || current_user.id == @book.owner_id
       redirect_to "/"
     end
-  end
-
-  def upload
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket("bookwormfiles")
-    file = params[:book][:url_file]
-    key = current_user.id.to_s + file.original_filename
-    obj = bucket.object(key)
-    obj.upload_file(file.path)
   end
 
 end
