@@ -16,7 +16,7 @@
       <img id="book_img" src="" alt="book">
    </div>
   </div>
-   
+
   <%= link_to 'Download', @book.url_file %>
   <%= link_to 'Back', books_path %>
 </div>
@@ -43,7 +43,7 @@ $.ajax({
   book.subtitle=json.items[i].volumeInfo.subtitle;
   book.description=json.items[i].volumeInfo.description;
   book.category=json.items[i].volumeInfo.categories;
-        
+
 $("#book_img").attr("src",book.img);
 $("#description").append(book.description);
 $("#category").append(book.category);
@@ -51,4 +51,3 @@ $("#subtitle").append(book.subtitle);
 }
 });
 </script>
-
