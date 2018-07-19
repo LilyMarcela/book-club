@@ -39,7 +39,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to "/books"
+    redirect_to "/profiles/#{current_user.id}/activity"
   end
 
   def search
