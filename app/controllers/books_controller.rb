@@ -30,7 +30,7 @@ class BooksController < ApplicationController
     redirect_to "/books/#{@book.id}"
     key = @book.title+@book.owner_id.to_s
     path = @book.bookpdf.current_path
-    HardWorker.perform_async(key, path)
+    HardWorker.perform_async(key, path, @book.id)
   end
 
   def update
