@@ -11,4 +11,6 @@ class Book < ApplicationRecord
   def self.per_page
 	  15
   end
+
+  mount_uploader :bookpdf, BookpdfUploader
 end
