@@ -1,6 +1,7 @@
+require 'open-uri'
 class BooksController < ApplicationController
   before_action :set_admin
-  before_action :find_book, only: [:show, :update]
+  before_action :find_book, only: [:show, :update, :edit, :destroy]
   before_action :destroy_check, only: [:destroy, :edit]
   before_action :authenticate_user!, except: [:index, :show ]
 
@@ -10,7 +11,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @url = get_pdf_from_bucket(@book.key)
   end
 
   def new
@@ -19,7 +20,6 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def create
@@ -28,9 +28,8 @@ class BooksController < ApplicationController
     @book.bookpdf = params[:book][:url_file]
     @book.save!
     redirect_to "/books/#{@book.id}"
-    key = @book.title+@book.owner_id.to_s
     path = @book.bookpdf.current_path
-    HardWorker.perform_async(key, path, @book.id)
+    HardWorker.perform_async(@book.key, path, @book.id)
   end
 
   def update
@@ -56,6 +55,13 @@ class BooksController < ApplicationController
     end
   end
 
+  def download
+    book = Book.find(params[:book_id])
+    url = get_pdf_from_bucket(book.key)
+    data = open(url).read
+    send_data data, :disposition => 'attachment', :filename=>"book.pdf"
+  end
+
   private
   def find_book
     @book = Book.find(params[:id])
@@ -65,10 +71,11 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :author, :url_file, :owner_id)
   end
 
-  def get_pdf_array_from_bucket(name)
+  def get_pdf_from_bucket(key)
     s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(name)
-    @books = bucket.objects
+    bucket = S3.bucket("bookwormfiles")
+    obj = bucket.object(key)
+    obj.presigned_url(:get)
   end
 
   def set_admin
