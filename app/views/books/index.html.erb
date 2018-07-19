@@ -10,13 +10,11 @@
 
       <div class="book-author"> <%= book.author %></div>
 
-      <% if current_user.admin || current_user.id == book.owner_id %>
 
         <div class="action">
           <%= link_to 'Edit', edit_book_path(book) %></td>
           <%= link_to 'Destroy', book, :confirm => 'Are you sure?',
                                       :method => :delete %>
-        <% end %>
         </div>
         </div>
         <div class="col-2 img-book" align="center">
