@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
    root "welcome#index"
+   get '/profiles/:user_id/activity', to: 'profiles#activity', as: 'profile_activity'
 
    resources :categories
    	resources :books do

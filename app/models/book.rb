@@ -1,14 +1,14 @@
 class Book < ApplicationRecord
-	# searchkick
+	searchkick
 
-	has_many :book_categories
-	has_many :categories,through: :book_categories
+  has_many :book_categories
+  has_many :categories,through: :book_categories
 
-	has_many :share_books
-	belongs_to :owner, class_name: "User", foreign_key:"owner_id"
-	def self.per_page
-    15
+  has_many :share_books
+  has_many :takers, through: :share_books, source: :taker
+
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+  def self.per_page
+	  15
   end
-
-
 end
