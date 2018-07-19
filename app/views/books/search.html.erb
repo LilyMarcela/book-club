@@ -1,8 +1,39 @@
-  <h3>We have found the follwing items matching your search criteria</h3>
-  <ul>
-  <% @books.each do |book| %>
+<div class="row search-books">
 
-    <li><%= link_to book.title, book_path(book) %></li>
+  <% @books.each_with_index do |book,index| %>
+  <div class="col-2 book" align="center">
+        <div class="book-title">
+
+       <a href="/books/<%= book.id %>"><%= book.title %></a>
+
+      </div>
+
+        <div class="book-author"> <%= book.author %></div>
+
+    <% if current_user.admin || current_user.id == book.owner_id %>
+
+      <div class="action">
+        <%= link_to 'Edit', edit_book_path(book) %></td>
+        <%= link_to 'Destroy', book, :confirm => 'Are you sure?',
+                                    :method => :delete %>
+      </div>
+      <% end %>
+    </div>
+
+      <div class="col-2 img-book" align="center">
+        <img data-title="<%= book.title %>"  data-author="<%= book.author %>" class="book-img" id="<%= index %>" src="" alt="book" width="60%">
+      </div>
+
 
 <% end -%>
-  </ul>
+</div>
+
+<div class="apple_pagination">
+  <p>Now let's render us some pagination!</p>
+  <%= will_paginate @book %>
+</div>
+
+<script type="text/javascript">
+   var books=loadBooks();
+
+</script>

@@ -21,7 +21,7 @@ function getImg(title,author,i) {
 
   $.ajax({
     url:'https://www.googleapis.com/books/v1/volumes?q=intitle:'+title.allReplace({" " : "+"})
-    +"+inauthor:"+author.allReplace({" " : "+"})+"&key=AIzaSyAKZyMGNq-sfmyeq4UMob7hndanxiY-NHU&maxResults=1",
+    +"+inauthor:"+author.allReplace({" " : "+"})+"&maxResults=1",
 
     success: function(json){
     var book={ img: "" };

@@ -4,8 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+#one: {}
 # column: value
 #
-two: {}
+#two: {}
 # column: value
+lein:
+  email: "lein.davir@gmail.com"
+  password_digest: <%= ActiveRecord::FixtureSet.default_password_digest %>
+
+marcela: 
+  email: "marcela.b.abril@gmail.com"
+  password_digest: <%= ActiveRecord::FixtureSet.default_password_digest %>
