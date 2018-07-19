@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   has_many :categories,through: :book_categories
 
   has_many :share_books
-  has_many :takers, through: :share_books, source: :taker
+  has_many :takers, through: :share_books, class_name: 'User', foreign_key: 'taker_id'
 
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
   def self.per_page
