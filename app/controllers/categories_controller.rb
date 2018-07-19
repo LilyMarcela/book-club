@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    @submit = 'New category'
   end
 
   def edit
@@ -17,23 +18,33 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(category_params)
+   @category = Category.new(category_params)
+   if @category && @category.save
+     redirect_to @category, notice: 'Category saved!'
+   else
+     render 'new'
+   end
   end
 
   def update
     @category = Category.find(params[:id])
-    @category.update(category_params)
+        if @category.update(category_params)
+        redirect_to @category
+      else
+        render 'edit'
+      end
+      @submit = 'Update category'
   end
-
 
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
+      redirect_to categories_path
   end
 
   private
-  def book_params
-    category.require(:category).permit(:name)
+  def category_params
+    params.require(:category).permit(:name)
   end
 
 end

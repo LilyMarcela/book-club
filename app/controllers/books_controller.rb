@@ -17,24 +17,34 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
     @background_pic = "sunsetpic"
   end
 
   def edit
     @book = Book.find(params[:id])
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   def create
-
     upload
     @book = Book.new(book_params)
     @book.owner_id = current_user.id
-    @book.save
+
+    respond_to do |format|
+      if @book.save
+        format.json { render :show, status: :created, location: @book }
+      else
+         format.html { render :new }
+      end
+    end
+
     redirect_to "/books/#{@book.id}"
   end
 
   def update
     @book.update(book_params)
+    @book.category_id = params[:category_id]
     redirect_to "/books"
   end
 
@@ -46,11 +56,11 @@ class BooksController < ApplicationController
   def search
     if params[:search]
       #the commented line search is a sql query, optional when elastic search has not being installed yet
-      @books = Book.where("title LIKE ? OR author LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+      #@books = Book.where("title LIKE ? OR author LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
 
       # searchkick parameters, it needs to have the gem installed
       # Additionally, it relies on elastic search which uses java
-      # @books = Book.search(params[:search])
+      @books = Book.search(params[:search])
     else
       @books = Book.all
     end
@@ -62,7 +72,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :url_file, :owner_id)
+    params.require(:book).permit(:title, :author, :url_file, :owner_id, :category_id)
   end
 
   def get_pdf_array_from_bucket(name)
