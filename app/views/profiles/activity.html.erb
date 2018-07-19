@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>My activity<h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h3>My Books<h3>
+        <ul>
+          <% @profile.books_owned.each do |book|%>
+            <li><a href="/books/<%= book.id %>"><%= book.title%></a></li>
+          <% end%>
+        </ul>
+    </div>
+    <div class="col-4">
+      <h3>My shared books<h3>
+        <ul>
+          <% @profile.books_shared.each do |book|%>
+            <li><a href="/books/<%= book.id %>"><%= book.title%></a></li>
+          <% end%>
+        </ul>
+    </div>
+    <div class="col-4">
+      <h3>My borrowed books<h3>
+          <ul>
+            <% @profile.books_borrowed.each do |book|%>
+              <li><a href="/books/<%= book.id %>"><%= book.title%></a></li>
+            <% end%>
+          </ul>
+    </div>
+  </div>
+</div>
