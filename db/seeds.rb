@@ -19,7 +19,6 @@ Categories.each do |category|
    Category.create(name: category[:name])
 end
 Books.each do |book|
-  puts book
     Book.create(title: book[:title],author: book[:author],owner_id: book[:owner_id])
 end
 
