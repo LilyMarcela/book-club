@@ -35,7 +35,7 @@ String.prototype.allReplace = function(obj) {
 
 $.ajax({
   url:'https://www.googleapis.com/books/v1/volumes?q=intitle:'+"<%= @book.title %>".allReplace({" " : "+"})
-  +"+inauthor:"+"<%= @book.author %>".allReplace({" " : "+"})+"&key=AIzaSyAKZyMGNq-sfmyeq4UMob7hndanxiY-NHU&maxResults=1",
+  +"+inauthor:"+"<%= @book.author %>".allReplace({" " : "+"})+"&maxResults=1",
 
   success: function(json){
   var book={ img: "" , description:"",subtitle: "" ,category:"", publishdate:"", publisher:""};
