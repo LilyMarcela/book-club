@@ -5,7 +5,8 @@
 
             <input placeholder="Title" type="text" name="book[title]" id="book_title">
             <input placeholder="Author" type="text" name="book[author]" id="book_author">
-            <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select one!") %>
+            <% category_id = @book.category && @book.category.id %>
+            <%= f.select(:category_id, options_for_select(@categories, category_id), :prompt => "Select one!") %>
  <!--            <input type="file" placeholder="File" name="book[url_file]" id="book_url_file" accept="file_extension"> -->
             <%= f.file_field :url_file %>
             <input type="submit" name="commit" value="Submit" class="btn btn-primary" data-disable-with="Submit">

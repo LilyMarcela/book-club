@@ -38,7 +38,6 @@ class BooksController < ApplicationController
 
   def update
     @book.update(book_params)
-    @book.category_id = params[:category_id]
     redirect_to "/books"
   end
 
