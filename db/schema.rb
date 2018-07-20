@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_07_19_162035) do
 
   create_table "books", force: :cascade do |t|
@@ -20,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_07_19_162035) do
     t.datetime "updated_at", null: false
     t.integer "owner_id"
     t.integer "category_id"
+    t.string "bookpdf"
+
   end
 
   create_table "categories", force: :cascade do |t|

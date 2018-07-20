@@ -1,18 +1,17 @@
+require 'open-uri'
 class BooksController < ApplicationController
   before_action :set_admin
-  before_action :find_book, only: [:show, :update]
+  before_action :find_book, only: [:show, :update, :edit, :destroy]
   before_action :destroy_check, only: [:destroy, :edit]
   before_action :authenticate_user!, except: [:index, :show ]
 
   def index
     @books = Book.all
-    @books = Book.paginate(:page => params[:page], :per_page => 5)
+    @books = Book.paginate(:page => params[:page], :per_page => 10)
   end
 
-
-
   def show
-    @book = Book.find(params[:id])
+    @url = get_pdf_from_bucket(@book.key)
   end
 
   def new
@@ -27,19 +26,14 @@ class BooksController < ApplicationController
   end
 
   def create
-    upload
     @book = Book.new(book_params)
     @book.owner_id = current_user.id
-
-    respond_to do |format|
-      if @book.save
-        format.json { render :show, status: :created, location: @book }
-      else
-         format.html { render :new }
-      end
-    end
+    @book.bookpdf = params[:book][:url_file]
+    @book.save!
 
     redirect_to "/books/#{@book.id}"
+    path = @book.bookpdf.current_path
+    HardWorker.perform_async(@book.key, path, @book.id)
   end
 
   def update
@@ -50,7 +44,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to "/books"
+    redirect_to "/profiles/#{current_user.id}/activity"
   end
 
   def search
@@ -60,10 +54,17 @@ class BooksController < ApplicationController
 
       # searchkick parameters, it needs to have the gem installed
       # Additionally, it relies on elastic search which uses java
-      @books = Book.search(params[:search])
+      @books = Book.search(params[:search], misspellings: {edit_distance: 3} )
     else
       @books = Book.all
     end
+  end
+
+  def download
+    book = Book.find(params[:book_id])
+    url = get_pdf_from_bucket(book.key)
+    data = open(url).read
+    send_data data, :disposition => 'attachment', :filename=>"book.pdf"
   end
 
   private
@@ -75,10 +76,11 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :author, :url_file, :owner_id, :category_id)
   end
 
-  def get_pdf_array_from_bucket(name)
+  def get_pdf_from_bucket(key)
     s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(name)
-    @books = bucket.objects
+    bucket = S3.bucket("bookwormfiles")
+    obj = bucket.object(key)
+    obj.presigned_url(:get)
   end
 
   def set_admin
@@ -90,15 +92,6 @@ class BooksController < ApplicationController
     unless @admin || current_user.id == @book.owner_id
       redirect_to "/"
     end
-  end
-
-  def upload
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket("bookwormfiles")
-    file = params[:book][:url_file]
-    key = current_user.id.to_s + file.original_filename
-    obj = bucket.object(key)
-    obj.upload_file(file.path)
   end
 
 end

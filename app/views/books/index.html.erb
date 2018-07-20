@@ -2,18 +2,13 @@
 
   <% @books.each_with_index do |book,index| %>
 
-  <%= render 'book_card', book: book, index: index %>
+    <%= render 'book_card', book: book, index: index %>
 
   <% end %>
 
-
+  <%= link_to 'New book', new_book_path %>
 
 </div>
-
-
-<%= link_to 'New book', new_book_path %>
-
-
 
 <div class="apple_pagination">
   <p>Now let's render us some pagination!</p>
@@ -22,5 +17,4 @@
 
 <script type="text/javascript">
    var books=loadBooks();
-
 </script>
