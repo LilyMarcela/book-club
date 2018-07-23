@@ -5,6 +5,7 @@
         <div class="book-title">
 
        <a href="/books/<%= book.id %>"><%= book.title %></a>
+       <p><%= link_to book.category.name, category_path(book.category_id), class: "badge badge-info" if book.category%></p>
 
       </div>
 

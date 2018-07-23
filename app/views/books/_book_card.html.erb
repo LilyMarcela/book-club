@@ -1,8 +1,8 @@
 <div class="col-2 book" align="center">
   <div class="book-title">
-    <a href="/books/<%= book.id %>"><%= book.title %></a>
-    <p><%= link_to book.category.name, category_path(book.category_id), class: "badge badge-info" if book.category%></p>
-  </div>
+    <a href="/books/<%= book.id %>"><%= book.title %></a></br>
+      <p class="badge badge-info"><%= book.category.name if book.category%></p>
+</div>
   <div class="book-author"> <%= book.author %></div>
 </div>
 

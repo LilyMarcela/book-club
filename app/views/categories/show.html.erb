@@ -3,7 +3,9 @@
   <div class="row justify-content-between">
     <div class="col-sm-6 col-md-12">
       <h1><%= @category.name %></h1>
-      <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-primary btn-sm mb-3" %>
+      <% if current_user && @category.books == current_user.id %>
+        <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-primary btn-sm mb-3" %>
+      <%end%>
     </div>
   </div>
 </div>
