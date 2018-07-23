@@ -1,17 +1,12 @@
 <div class="row index-books">
-
   <% @books.each_with_index do |book,index| %>
-
     <%= render 'book_card', book: book, index: index %>
-
   <% end %>
-
-  <%= link_to 'New book', new_book_path %>
-
 </div>
 
+<a class="btn btn-primary" href="/books/new">Share my book</a>
+
 <div class="apple_pagination">
-  <p>Now let's render us some pagination!</p>
   <%= will_paginate @book %>
 </div>
 
