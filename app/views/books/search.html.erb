@@ -27,11 +27,11 @@
 
 <% end -%>
 </div>
-
+<% if @books.length > 20 %>
 <div class="apple_pagination">
-  <p>Now let's render us some pagination!</p>
-  <%= will_paginate @book %>
+  <%= will_paginate @books %>
 </div>
+<% end %>
 
 <script type="text/javascript">
    var books=loadBooks();
