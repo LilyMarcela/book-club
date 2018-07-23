@@ -7,7 +7,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @books = Book.paginate(:page => params[:page], :per_page => 10)
+    if @books.length > 20
+      @books = Book.paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   def show
