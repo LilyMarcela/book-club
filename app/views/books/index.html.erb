@@ -1,29 +1,12 @@
 <div class="row index-books">
 
   <% @books.each_with_index do |book,index| %>
-    <div class="col-2 book" align="center">
-          <div class="book-title">
 
-         <a href="/books/<%= book.id %>"><%= book.title %></a>
+    <%= render 'book_card', book: book, index: index %>
 
-        </div>
-
-          <div class="book-author"> <%= book.author %></div>
-
-      </div>
-
-        <div class="col-2 img-book" align="center">
-          <img data-title="<%= book.title %>"  data-author="<%= book.author %>" class="book-img" id="<%= index %>" src="" alt="book" width="60%">
-        </div>
-      
   <% end %>
 
-
-
-
-
-
-<%= link_to 'New book', new_book_path %>
+  <%= link_to 'New book', new_book_path %>
 
 </div>
 
@@ -34,5 +17,4 @@
 
 <script type="text/javascript">
    var books=loadBooks();
-
 </script>

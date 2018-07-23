@@ -16,10 +16,13 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
     @background_pic = "sunsetpic"
   end
 
   def edit
+    @book = Book.find(params[:id])
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   def create
@@ -27,6 +30,7 @@ class BooksController < ApplicationController
     @book.owner_id = current_user.id
     @book.bookpdf = params[:book][:url_file]
     @book.save!
+
     redirect_to "/books/#{@book.id}"
     path = @book.bookpdf.current_path
     HardWorker.perform_async(@book.key, path, @book.id)
@@ -68,7 +72,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :url_file, :owner_id)
+    params.require(:book).permit(:title, :author, :url_file, :owner_id, :category_id)
   end
 
   def get_pdf_from_bucket(key)
