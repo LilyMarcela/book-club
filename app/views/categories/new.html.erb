@@ -1,2 +1,17 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<div class="container">
+  <div class='row'>
+    <div class="col-sm-12">
+      <div class="mt-4 mb-4">
+        <%= link_to 'Back',  categories_path, class: "btn btn-primary btn-sm"%>
+        <h1>New Category</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class='row'>
+    <div class="col-sm-12">
+      <%= render 'category_form' %>
+    </div>
+  </div>
+</div>
