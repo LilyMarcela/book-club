@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_07_19_184528) do
 
-  create_table "book_categories", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
@@ -26,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_07_19_184528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
+    t.integer "category_id"
     t.string "bookpdf"
   end
 

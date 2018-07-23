@@ -12,12 +12,16 @@
           <p id="category"> </p>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-sm-12 col-lg-4">
       <img id="book_img" src="" alt="book">
    </div>
   </div>
 
+<% if user_signed_in? %>  
+
   <%= link_to 'Download', @url, class: 'btn btn-success' %>
+
+<%end %>
   <%= link_to 'Back', books_path, class: 'btn btn-primary' %>
 </div>
 

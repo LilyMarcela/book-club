@@ -1,2 +1,22 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="container mt-4 mb-4 bg-light" >
+  <%= link_to 'Back', categories_path %>
+  <div class="row justify-content-between">
+    <div class="col-sm-6 col-md-12">
+      <h1><%= @category.name %></h1>
+      <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-primary btn-sm mb-3" %>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 mb-4" >
+  <div class="row">
+    <div class="col-md-12">
+      <h3> Books under this category </h3>
+        <div class="card-deck">
+        <% @category.books.each_with_index do |book, index| %>
+         <%= render 'books/book_card', book: book, index: index %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
