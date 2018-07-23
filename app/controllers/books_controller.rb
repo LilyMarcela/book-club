@@ -23,6 +23,7 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
     @categories = Category.all.map{|c| [ c.name, c.id ] }
+    @background_pic = "sunsetpic"
   end
 
   def create

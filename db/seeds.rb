@@ -12,7 +12,7 @@ Users=[{email:"gabriel@gmail.com", password:"123456"},{email:"pop90@gmail.com" ,
 Books=[{title: "Dulceagrio",author:"Stephanie Danler",url_file:"http://aristobulo.psuv.org.ve/wp-content/uploads/2008/10/garcia-marquez-gabriel-cien-anos-de-soledad1.pdf",owner_id: 1},{title: "Cien años de soledad",author:"Gabriel Garcia Marques",url_file:"http://aristobulo.psuv.org.ve/wp-content/uploads/2008/10/garcia-marquez-gabriel-cien-anos-de-soledad1.pdf",owner_id: 2},{title: "HTML and CSS",author:"Jon Duckett",url_file:"http://aristobulo.psuv.org.ve/wp-content/uploads/2008/10/garcia-marquez-gabriel-cien-anos-de-soledad1.pdf",owner_id: 2},{title: "Harry potter Caliz de fuego",author:"J. K. ROWLING",url_file: "http://aristobulo.psuv.org.ve/wp-content/uploads/2008/10/garcia-marquez-gabriel-cien-anos-de-soledad1.pdf" ,
   owner_id: 2},{title: "Cuentos de buenas noches para ninas rebeldes 2",author:"FRANCESCA CAVALLO Y ELENA FAVILLI",url_file:"http://aristobulo.psuv.org.ve/wp-content/uploads/2008/10/garcia-marquez-gabriel-cien-anos-de-soledad1.pdf", owner_id: 3}]
 
-Categories=[{ name: "Drama"},{name: "Computers"},{name: "Fiction"},{name: "Mistery"},{name: "Suspense"},{name: "Soup Opera"},{name: "Romantic"},{name: "Bibliografica"}]
+Categories=[{ name: "Education"},{name: "History"},{name: "Horror"},{name: "Health"},{name: "Travel"},{name: "Fiction"},{name: "Romance"},{name: "Other"}]
 
 Categories.each do |category|
 
